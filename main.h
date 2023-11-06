@@ -9,5 +9,5 @@
 #include <sys/wait.h>
 #include <string.h>
 #include <sys/wait.h>
-void display();
+void getline_fun();
 #endif
