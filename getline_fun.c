@@ -36,6 +36,7 @@
 			args[i] = NULL;
 			ex_command(args);
 		}
+		printf("$");
 	}
 	if (lineptr != NULL)
 	{
