@@ -1,6 +1,6 @@
 #include "main.h"
-int main(void)
+int main()
 {
 	getline_fun();
-	return (0);
+	return EXIT_SUCCESS;
 }
