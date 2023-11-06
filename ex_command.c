@@ -21,9 +21,8 @@ void ex_command(char **args)
 	{
 		do
 		{
-			pid_t ppid;
 
-			 ppid = waitpid(pid, &status, WUNTRACED);
+			waitpid(pid, &status, WUNTRACED);
 		}while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
 }
