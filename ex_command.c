@@ -1,7 +1,7 @@
 #include "main.h"
-ex_command(char **args)
+void ex_command(char **args)
 {
-	pid_t pid, wpid;
+	pid_t pid;
 	int status;
 
 	pid = fork();
@@ -21,7 +21,9 @@ ex_command(char **args)
 	{
 		do
 		{
-			 wpid = waitpid(pid, &status, WUNTRACED);
+			pid_t ppid;
+
+			 ppid = waitpid(pid, &status, WUNTRACED);
 		}while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
 }
