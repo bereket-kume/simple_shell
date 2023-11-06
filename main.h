@@ -10,4 +10,6 @@
 #include <string.h>
 #include <sys/wait.h>
 void getline_fun();
+void token_fun();
+
 #endif
