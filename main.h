@@ -11,5 +11,5 @@
 #include <sys/wait.h>
 void getline_fun();
 void token_fun();
-
+void ex_command(char **args);
 #endif
