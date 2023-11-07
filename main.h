@@ -13,6 +13,6 @@ void getline_fun();
 void token_fun();
 void ex_command(char **args);
 int _putchar(char c);
-char *path_barbadi(const char command);
+char *path_barbadi(const char *command);
 
 #endif
