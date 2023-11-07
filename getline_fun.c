@@ -36,11 +36,10 @@
 			args[i] = NULL;
 			ex_command(args);
 		}
-<<<<<<< HEAD
+
 		printf("$ ");
-=======
 		_putchar('$');
->>>>>>> 27f1b71853a40719c81c5394cc256c70d16ef04e
+		_putchar('$');
 	}
 	if (lineptr != NULL)
 	{
