@@ -12,6 +12,7 @@
 	while (1)
 	{
 		ssize_t read = getline(&lineptr, &n, stdin);
+
 		if (read == -1)
 		{
 			if (lineptr == NULL)
@@ -44,6 +45,4 @@
 	{
 		free(lineptr);
 	}
-
-
 }
