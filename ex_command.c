@@ -3,19 +3,26 @@ void ex_command(char **args)
 {
 	pid_t pid;
 	int status;
-
+	char *full_path = path_barbadi(args[0]);
+	if (full_path == NULL)
+	{
+		fprintf(stderr, "Command not found: %s\n", args[0]);
+		return;
+	}
 	pid = fork();
 	if (pid == 0)
 	{
-		if (execv(args[0], args) == -1)
+		if (execv(full_path, args) == -1)
 		{
 			perror("./shell");
 		}
+		free(full_path);
 		exit(EXIT_FAILURE);
 	}
 	else if (pid < 0)
 	{
 		perror("fork");
+		free(full_path);
 	}
 	else
 	{
@@ -24,5 +31,6 @@ void ex_command(char **args)
 
 			waitpid(pid, &status, WUNTRACED);
 		}while (!WIFEXITED(status) && !WIFSIGNALED(status));
+		free(full_path);
 	}
 }

@@ -7,7 +7,8 @@
 	char *args[64];
 	int i;
 
-	printf("$ ");
+	_putchar('$');
+	_putchar(' ');
 	while (1)
 	{
 		ssize_t read = getline(&lineptr, &n, stdin);
@@ -36,10 +37,8 @@
 			args[i] = NULL;
 			ex_command(args);
 		}
-
-		printf("$ ");
 		_putchar('$');
-		_putchar('$');
+		_putchar(' ');
 	}
 	if (lineptr != NULL)
 	{
