@@ -7,9 +7,9 @@ void ex_command(char **args)
 	pid = fork();
 	if (pid == 0)
 	{
-		if (execvp(args[0], args) == -1)
+		if (execv(args[0], args) == -1)
 		{
-			perror("execvp");
+			perror("./shell");
 		}
 		exit(EXIT_FAILURE);
 	}
