@@ -12,4 +12,5 @@
 void getline_fun();
 void token_fun();
 void ex_command(char **args);
+int _putchar(char c);
 #endif
