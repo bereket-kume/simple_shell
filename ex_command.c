@@ -33,4 +33,5 @@ void ex_command(char **args)
 		}while (!WIFEXITED(status) && !WIFSIGNALED(status));
 		free(full_path);
 	}
+
 }

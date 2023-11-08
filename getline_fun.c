@@ -39,7 +39,7 @@
 			ex_command(args);
 		}
 		_putchar('$');
-		_putchar(' ');
+	
 	}
 	if (lineptr != NULL)
 	{
