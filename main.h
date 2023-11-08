@@ -14,5 +14,6 @@ void token_fun();
 void ex_command(char **args);
 int _putchar(char c);
 char *path_barbadi(const char *command);
+void exit_handle();
 
 #endif

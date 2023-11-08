@@ -4,6 +4,10 @@ void ex_command(char **args)
 	pid_t pid;
 	int status;
 	char *full_path = path_barbadi(args[0]);
+	if (full_path == "exit")
+	{
+		exit_handle();
+	}
 	if (full_path == NULL)
 	{
 		fprintf(stderr, "Command not found: %s\n", args[0]);
