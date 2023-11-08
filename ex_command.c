@@ -26,7 +26,6 @@ void ex_command(char **args)
 	else if (pid < 0)
 	{
 		perror("fork");
-		free(full_path);
 	}
 	else
 	{
@@ -35,7 +34,7 @@ void ex_command(char **args)
 
 			waitpid(pid, &status, WUNTRACED);
 		}while (!WIFEXITED(status) && !WIFSIGNALED(status));
-		free(full_path);
 	}
+	free(full_path);
 
 }
