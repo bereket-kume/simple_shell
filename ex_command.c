@@ -4,7 +4,7 @@ void ex_command(char **args)
 	pid_t pid;
 	int status;
 	char *full_path = path_barbadi(args[0]);
-	if (full_path == "exit")
+	if (strcmp(full_path,"exit") == 0)
 	{
 		exit_handle();
 	}
@@ -18,7 +18,7 @@ void ex_command(char **args)
 	{
 		if (execv(full_path, args) == -1)
 		{
-			perror("./shell");
+			perror("excve");
 		}
 		free(full_path);
 		exit(EXIT_FAILURE);
