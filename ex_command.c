@@ -8,11 +8,6 @@ void ex_command(char **args)
 	{
 		exit_handle();
 	}
-	if (full_path == NULL)
-	{
-		fprintf(stderr, "Command not found: %s\n", args[0]);
-		return;
-	}
 	pid = fork();
 	if (pid == 0)
 	{

@@ -45,4 +45,5 @@
 	{
 		free(lineptr);
 	}
+	free(lineptr);
 }
