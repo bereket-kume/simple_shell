@@ -1,35 +1,17 @@
 #include "main.h"
 void ex_command(char **args)
 {
-	pid_t pid;
-	int status;
-	char *full_path = path_barbadi(args[0]);
-	if (strcmp(full_path,"exit") == 0)
-	{
-		exit_handle();
-	}
-	pid = fork();
-	if (pid == 0)
-	{
-		if (execv(full_path, args) == -1)
-		{
-			perror("excve");
-		}
-		free(full_path);
-		exit(EXIT_FAILURE);
-	}
-	else if (pid < 0)
-	{
-		perror("fork");
-	}
-	else
-	{
-		do
-		{
+	char *command = NULL;
+	char *command_kan = NULL;
 
-			waitpid(pid, &status, WUNTRACED);
-		}while (!WIFEXITED(status) && !WIFSIGNALED(status));
+	if (args)
+	{
+		command = args[0];
+		command_kan = path_barbadi(command);
+		if (execve(command_kan, args, NULL) == -1)
+		{
+			perror("Error.");
+		}
 	}
-	free(full_path);
 
 }
