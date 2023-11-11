@@ -6,20 +6,16 @@
 	char *token;
 	char *args[64];
 	int i;
-
-	_putchar('$');
-	_putchar(' ');
-	while (1)
+	display_prompt();
+	do
 	{
 		ssize_t read = getline(&lineptr, &n, stdin);
-
 		if (read == -1)
 		{
 			if (lineptr == NULL)
 			{
 				free(lineptr);
 			}
-			break;
 		}
 		if (read > 0)
 		{
@@ -38,9 +34,9 @@
 			args[i] = NULL;
 			ex_command(args);
 		}
-		_putchar('$');
-	
-	}
+
+			display_prompt();
+	}while(1);
 	if (lineptr != NULL)
 	{
 		free(lineptr);
