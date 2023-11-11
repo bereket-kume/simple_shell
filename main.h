@@ -14,5 +14,8 @@ void token_fun();
 void ex_command(char **args);
 int _putchar(char c);
 char *my_getline();
+char *path_barbadi(const char *command);
+void exit_handle();
+void display_prompt();
 char *my_strtok(char *str, const char *delimiters);
 #endif

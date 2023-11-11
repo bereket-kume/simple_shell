@@ -6,9 +6,8 @@
 	char *token;
 	char *args[64];
 	int i;
-
-	printf("$ ");
-	while (1)
+	display_prompt();
+	while(1)
 	{
 		ssize_t read = getline(&lineptr, &n, stdin);
 		if (read == -1)
@@ -17,7 +16,6 @@
 			{
 				free(lineptr);
 			}
-			break;
 		}
 		if (read > 0)
 		{
@@ -31,17 +29,17 @@
 			{
 				args[i] = token;
 				i++;
-				token = strtok(NULL, DELIM);
+				token = my_strtok(NULL, DELIM);
 			}
 			args[i] = NULL;
 			ex_command(args);
 		}
-		_putchar('$');
+
+			display_prompt();
 	}
 	if (lineptr != NULL)
 	{
 		free(lineptr);
 	}
-
-
+	free(lineptr);
 }

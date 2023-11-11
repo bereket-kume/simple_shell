@@ -1,28 +1,38 @@
 #include "main.h"
 void ex_command(char **args)
 {
-	pid_t pid;
+	char *command = NULL;
+	char *command_kan = NULL;
 	int status;
-
-	pid = fork();
-	if (pid == 0)
+	if (args)
 	{
-		if (execvp(args[0], args) == -1)
+		pid_t pid = fork();
+		command = args[0];
+		command_kan = path_barbadi(command);
+		if (pid == -1)
 		{
-			perror("execvp");
+			perror("fork error");
+			exit(EXIT_FAILURE);
 		}
-		exit(EXIT_FAILURE);
-	}
-	else if (pid < 0)
-	{
-		perror("fork");
-	}
-	else
-	{
-		do
+		else if(strcmp(command,"exit") == 0)
 		{
+			exit_handle();
+		}
+		else if (pid == 0)
+		{
+		if (execve(command_kan, args, NULL) == -1)
+		{
+			perror("Error*");
+			exit(EXIT_FAILURE);
+		}
+		}
+		else
+		{
+			waitpid(pid, &status, 0);
+		}
+		free(command_kan);
 
-			waitpid(pid, &status, WUNTRACED);
-		}while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
+
+
 }
