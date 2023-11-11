@@ -29,7 +29,7 @@
 			{
 				args[i] = token;
 				i++;
-				token = strtok(NULL, DELIM);
+				token = my_strtok(NULL, DELIM);
 			}
 			args[i] = NULL;
 			ex_command(args);

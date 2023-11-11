@@ -14,6 +14,10 @@ void ex_command(char **args)
 			perror("fork error");
 			exit(EXIT_FAILURE);
 		}
+		else if(strcmp(command,"exit") == 0)
+		{
+			exit_handle();
+		}
 		else if (pid == 0)
 		{
 		if (execve(command_kan, args, NULL) == -1)
@@ -26,6 +30,7 @@ void ex_command(char **args)
 		{
 			waitpid(pid, &status, 0);
 		}
+		free(command_kan);
 
 	}
 

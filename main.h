@@ -16,5 +16,5 @@ int _putchar(char c);
 char *path_barbadi(const char *command);
 void exit_handle();
 void display_prompt();
-
+char *my_strtok(char *str, const char *delimiters);
 #endif
