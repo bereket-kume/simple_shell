@@ -18,7 +18,7 @@ void ex_command(char **args)
 		{
 		if (execve(command_kan, args, NULL) == -1)
 		{
-			perror("Error.");
+			perror("Error*");
 			exit(EXIT_FAILURE);
 		}
 		}
