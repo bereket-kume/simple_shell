@@ -23,7 +23,7 @@
 			{
 				lineptr[read - 1] = '\0';
 			}
-			token = strtok(lineptr, DELIM);
+			token = my_strtok(lineptr, DELIM);
 			i = 0;
 			while (token != NULL)
 			{
