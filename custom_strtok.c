@@ -1,11 +1,11 @@
-#inlude "main.h"
+#include "main.h"
 
 /**
  * my_strtok - tokenize the entered string
  * @str: the string entered
  * @delimeters: the character based on which the string divided
  * Return: tokenstart if the string isn't null else NULL
-/
+*/
 
 char *my_strtok(char *str, const char *delimiters) {
     static char *lastToken = NULL;
