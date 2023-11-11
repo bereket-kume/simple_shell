@@ -11,7 +11,7 @@
 	_putchar(' ');
 	while (1)
 	{
-		ssize_t read = getline(&lineptr, &n, stdin);
+		ssize_t read = my_getline();
 
 		if (read == -1)
 		{
