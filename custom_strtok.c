@@ -7,34 +7,39 @@
  * Return: tokenstart if the string isn't null else NULL
 */
 
-char *my_strtok(char *str, const char *delimiters) {
-    static char *lastToken = NULL;
-    char *tokenStart;
+char *my_strtok(char *strn, const char *del)
+{
+	static char *l_tok = NULL;
+	char *tok_s;
 
-    if (str != NULL) {
-        lastToken = str;
-    } else {
-
-        if (lastToken == NULL) {
-            return NULL;
-        }
-    }
-
-    tokenStart = lastToken + strspn(lastToken, delimiters);
-
-    if (*tokenStart == '\0') {
-        lastToken = NULL;
-        return NULL;
-    }
-
-    lastToken = tokenStart + strcspn(tokenStart, delimiters);
-
-    if (*lastToken != '\0') {
-        *lastToken = '\0';
-        lastToken++;
-    } else {
-        lastToken = NULL;
-    }
-
-    return tokenStart;
+	if (strn != NULL)
+	{
+		l_tok = strn;
+	}
+	else
+	{
+		if (l_tok == NULL)
+		{
+			return NULL;
+		}
+	}
+	
+	tok_s = l_tok + strspn(l_tok, del);
+	if (*tok_s == '\0')
+	{
+		l_tok = NULL;
+		return NULL;
+	}
+	l_tok = tok_s + strcspn(tok_s, del);
+	
+	if (*l_tok != '\0')
+	{
+		*l_tok = '\0';
+		l_tok++;
+	}
+	else
+	{
+		l_tok = NULL;
+	}
+	return tok_s;
 }
