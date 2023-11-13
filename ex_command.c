@@ -23,6 +23,10 @@ void ex_command(char **args)
 		{
 			command = args[0];
 			command_kan = path_barbadi(command);
+			if (strcmp(command, "exit") == 0)
+			{
+				exit_handle();
+			}
 			if (command_kan == NULL)
 			{
 				fprintf(stderr, "command not found in PATH: %s\n",command);
