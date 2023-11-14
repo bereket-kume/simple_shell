@@ -1,5 +1,9 @@
 #include "main.h"
- void exit_handle()
+/**
+ *exit_handle - is function that used to exit the process
+ *Return: nothing
+ */
+void exit_handle(void)
 {
 	exit(0);
 }

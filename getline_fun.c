@@ -4,7 +4,7 @@
  *getline_fun - is function that parse that form the user
  *Retrun - nothing
  */
- void getline_fun(void)
+void getline_fun(void)
 {
 	char *lineptr = NULL, *token, *args[64];
 	size_t n = 0;

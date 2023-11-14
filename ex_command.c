@@ -29,7 +29,7 @@ void ex_command(char **args)
 			}
 			if (command_kan == NULL)
 			{
-				fprintf(stderr, "command not found in PATH: %s\n",command);
+				fprintf(stderr, "command not found in PATH: %s\n", command);
 				exit(EXIT_FAILURE);
 			}
 			if (execve(command_kan, args, NULL) == -1)
