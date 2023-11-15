@@ -5,7 +5,6 @@
  */
 void display_prompt(void)
 {
-    _putchar('$');;
-    _putchar(' ');
-    fflush(stdout);
+	_putchar('$');
+	_putchar(' ');
 }
