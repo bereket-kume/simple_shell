@@ -12,6 +12,41 @@ void ex_command(char **args)
 
 	if (args && args[0])
 	{
+		command = args[0];
+		if (strchr(command, '/') != NULL)
+		{
+			command_kan = strdup(command);
+		}
+		else
+		{
+			char *path = getenv("PATH");
+			char *copy_path = strdup(path);
+			char *dir = strtok(copy_path, ":");
+
+			while (dir != NULL)
+			{
+				command_kan = malloc(strlen(dir) + strlen(command) + 2);
+				sprintf(command_kan, "%s/%s", dir, command);
+				if (access(command_kan, X_OK) == 0)
+				{
+					break;
+				}
+				free(command_kan);
+				dir = strtok(NULL, ":");
+			}
+			if (strcmp("exit", command) == 0)
+			{
+				exit(EXIT_FAILURE);
+			}
+			if (dir == NULL)
+			{
+
+				fprintf(stderr, "Command not found in PATH: %s\n", command);
+				free(copy_path);
+				exit(EXIT_SUCCESS);
+			}
+			free(copy_path);
+		}
 		pid_t pid = fork();
 
 		if (pid == -1)
@@ -25,13 +60,15 @@ void ex_command(char **args)
 			command_kan = path_barbadi(command);
 			if (strcmp(command, "exit") == 0)
 			{
-				exit(EXIT_FAILURE);
+				exit_handle();
 			}
 			if (command_kan == NULL)
 			{
 				fprintf(stderr, "command not found in PATH: %s\n", command);
 				exit(EXIT_FAILURE);
 			}
+		}
+		waitpid(pid, &status, 0);
 			if (execve(command_kan, args, NULL) == -1)
 			{
 				perror("execve error");
@@ -44,4 +81,5 @@ void ex_command(char **args)
 		}
 		free(command_kan);
 	}
+
 }
