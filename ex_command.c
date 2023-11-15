@@ -25,7 +25,7 @@ void ex_command(char **args)
 			command_kan = path_barbadi(command);
 			if (strcmp(command, "exit") == 0)
 			{
-				exit_handle();
+				exit(EXIT_FAILURE);
 			}
 			if (command_kan == NULL)
 			{
