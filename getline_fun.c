@@ -20,12 +20,11 @@ void getline_fun(int argc, char *argv[])
 	    ex_command(args);
 	    return;
     }
-    display_prompt();
-
-    while (1)
+	
+    do
     {
         ssize_t read_size = getline(&lineptr, &n, stdin);
-
+	display_prompt();
         if (read_size == -1)
         {
             if (lineptr != NULL)
@@ -53,9 +52,7 @@ void getline_fun(int argc, char *argv[])
             args[i] = NULL;
 	    ex_command(args);
         }
-
-        display_prompt();
-    }
+    }while(1);
 
     if (lineptr != NULL)
     {

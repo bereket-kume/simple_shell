@@ -9,6 +9,7 @@ void ex_command(char **args)
 	char *command = NULL;
 	char *command_kan = NULL;
 	int status;
+	pid_t pid = fork();
 
 	if (args && args[0])
 	{
@@ -34,6 +35,10 @@ void ex_command(char **args)
 				free(command_kan);
 				dir = strtok(NULL, ":");
 			}
+			if (strcmp("exit", command) == 0)
+			{
+				exit(EXIT_FAILURE);
+			}
 			if (dir == NULL)
 			{
 				fprintf(stderr, "Command not found in PATH: %s\n", command);
@@ -42,10 +47,10 @@ void ex_command(char **args)
 			}
 			free(copy_path);
 		}
-		pid_t pid = fork();
+
 		if (strcmp(command, "exit") == 0)
 		{
-			exit_handle();
+			exit(EXIT_FAILURE);
 		}
 
 		if (pid == -1)
