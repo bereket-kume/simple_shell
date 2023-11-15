@@ -9,7 +9,7 @@
 #include <sys/wait.h>
 #include <string.h>
 #include <sys/wait.h>
-void getline_fun(int argc, char *argv[]);
+void getline_fun();
 void token_fun(void);
 void ex_command(char **args);
 int _putchar(char c);
