@@ -5,11 +5,12 @@
  * getline_fun - function that parses input from the user
  * Return: nothing
  */
-void getline_fun(int argc, char *argv[])
+void getline_fun(void)
 {
     char *lineptr = NULL, *token, *args[64];
     size_t n = 0;
     int i;
+<<<<<<< HEAD
     if (argc > 1)
     {
 	    for (i = 1; i < argc; i++)
@@ -25,6 +26,15 @@ void getline_fun(int argc, char *argv[])
         ssize_t read_size;
 	display_prompt();
        	read_size = getline(&lineptr, &n, stdin);
+=======
+
+    display_prompt();
+
+    while (1)
+    {
+        ssize_t read_size = getline(&lineptr, &n, stdin);
+
+>>>>>>> 54d70d9d7ce31e6af4b51855d5012f91a870df24
         if (read_size == -1)
         {
             if (lineptr != NULL)
@@ -50,9 +60,10 @@ void getline_fun(int argc, char *argv[])
                 token = my_strtok(NULL, DELIM);
             }
             args[i] = NULL;
-	    ex_command(args);
         }
-    }while(1);
+
+        display_prompt();
+    }
 
     if (lineptr != NULL)
     {
