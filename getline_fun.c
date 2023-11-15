@@ -5,12 +5,21 @@
  * getline_fun - function that parses input from the user
  * Return: nothing
  */
-void getline_fun(void)
+void getline_fun(int argc, char *argv[])
 {
     char *lineptr = NULL, *token, *args[64];
     size_t n = 0;
     int i;
-
+    if (argc > 1)
+    {
+	    for (i = 1; i < argc; i++)
+	    {
+		    args[i - 1] = argv[i];
+	    }
+	    args[argc-1] = NULL;
+	    ex_command(args);
+	    return;
+    }
     display_prompt();
 
     while (1)

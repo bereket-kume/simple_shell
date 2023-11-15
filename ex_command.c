@@ -22,17 +22,40 @@ void ex_command(char **args)
 		else if (pid == 0)
 		{
 			command = args[0];
-			command_kan = path_barbadi(command);
+			if (strchr(command, '/') != NULL)
+			{
+				command_kan = strdup(command);
+			}
+			else
+			{
+				char *path = getenv("PATH");
+				char *path_copy = strdup(path);
+				char *dir = strtok(path_copy, ":");
+
+				while(dir != NULL)
+				{
+					command_kan = malloc(strlen(dir) + strlen(command) + 2);
+					sprintf(command_kan, "%s/%s", dir, command);
+					if(access(command_kan, X_OK) == 0)
+					{
+						break;
+					}
+					free(command_kan);
+					dir = strtok(NULL, ":");
+				}
+				if (dir == NULL)
+				{
+					fprintf(stderr, "command not found in PATH: %s\n", command);
+					free(path_copy);
+					exit(EXIT_SUCCESS);
+				}
+				free(path_copy);
+			}
 			if (strcmp(command, "exit") == 0)
 			{
 				exit_handle();
 			}
-			if (command_kan == NULL)
-			{
-				fprintf(stderr, "command not found in PATH: %s\n", command);
-				exit(EXIT_FAILURE);
-			}
-			if (execve(command_kan, args, NULL) == -1)
+			if  (execve(command_kan, args, NULL) == -1)
 			{
 				perror("execve error");
 				exit(EXIT_FAILURE);
@@ -44,4 +67,5 @@ void ex_command(char **args)
 		}
 		free(command_kan);
 	}
+
 }
