@@ -41,6 +41,10 @@ void ex_command(char **args)
 					free(command_kan);
 					dir = strtok(NULL, ":");
 				}
+				if (strcmp(command, "exit") == 0)
+				{
+					exit(EXIT_FAILURE);
+				}
 				if (dir == NULL)
 				{
 					fprintf(stderr, "command not found in PATH: %s\n", command);
@@ -48,10 +52,6 @@ void ex_command(char **args)
 					exit(EXIT_SUCCESS);
 				}
 				free(path_copy);
-			}
-			if (strcmp(command, "exit") == 0)
-			{
-				exit_handle();
 			}
 			if  (execve(command_kan, args, NULL) == -1)
 			{
