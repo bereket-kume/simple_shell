@@ -23,13 +23,13 @@ char *my_strtok(char *strn, const char *del)
             return (NULL);
         }
     }
-    tok_s = l_tok + strspn(l_tok, del);
+    tok_s = l_tok + _strspn(l_tok, del);
     if (*tok_s == '\0')
     {
         l_tok = NULL;
         return (NULL);
     }
-    l_tok = tok_s + strcspn(tok_s, del);
+    l_tok = tok_s + _strcspn(tok_s, del);
     if (*l_tok != '\0')
     {
         *l_tok = '\0';

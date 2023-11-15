@@ -18,4 +18,6 @@ char *path_barbadi(const char *command);
 void exit_handle(void);
 void display_prompt(void);
 char *my_strtok(char *str, const char *delimiters);
+size_t _strcspn(const char *jch, const char *bal);
+size_t _strspn(const char *jch, const char *gal);
 #endif
