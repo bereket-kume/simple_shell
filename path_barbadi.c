@@ -8,7 +8,7 @@
 char *path_barbadi(const char *command)
 {
 	char *path = getenv("PATH");
-	@@ -8,15 +13,15 @@ char *path_barbadi(const char *command)
+
 	while (token != NULL)
 	{
 		char full_path[PATH_MAX];
