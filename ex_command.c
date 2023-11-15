@@ -41,18 +41,13 @@ void ex_command(char **args)
 			}
 			if (dir == NULL)
 			{
+
 				fprintf(stderr, "Command not found in PATH: %s\n", command);
 				free(copy_path);
-				exit(EXIT_FAILURE);
+				exit(EXIT_SUCCESS);
 			}
 			free(copy_path);
 		}
-
-		if (strcmp(command, "exit") == 0)
-		{
-			exit(EXIT_FAILURE);
-		}
-
 		if (pid == -1)
 		{
 			perror("fork error");
@@ -65,11 +60,8 @@ void ex_command(char **args)
 				perror("execve error");
 				exit(EXIT_FAILURE);
 			}
-			else
-			{
-				waitpid(pid, &status, 0);
-			}
-			free(command_kan);
 		}
+		waitpid(pid, &status, 0);
+		free(command_kan);
 	}
 }

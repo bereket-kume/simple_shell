@@ -49,8 +49,8 @@ void getline_fun(int argc, char *argv[])
             args[i] = NULL;
 	    ex_command(args);
         }
-        display_prompt();
     }
+    display_prompt();
     if (lineptr != NULL)
     {
         free(lineptr);
