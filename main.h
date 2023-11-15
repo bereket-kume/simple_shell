@@ -20,4 +20,5 @@ void display_prompt(void);
 char *my_strtok(char *str, const char *delimiters);
 size_t _strcspn(const char *jch, const char *bal);
 size_t _strspn(const char *jch, const char *gal);
+void execute_cd(char *directory);
 #endif

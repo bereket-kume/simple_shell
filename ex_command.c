@@ -45,6 +45,11 @@ void ex_command(char **args)
 				{
 					exit(EXIT_FAILURE);
 				}
+				if (args && args[0] && strcmp(args[0], "cd") == 0)
+				{
+					execute_cd(args[1]);
+					return;
+				}
 				if (dir == NULL)
 				{
 					fprintf(stderr, "command not found in PATH: %s\n", command);

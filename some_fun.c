@@ -64,6 +64,7 @@ size_t _strspn(const char *jch, const char *gal)
 }
 
 #include "main.h"
+#include <limits.h>
 void execute_cd(char *directory)
 {
     if (directory == NULL)
