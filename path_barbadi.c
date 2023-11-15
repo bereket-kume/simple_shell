@@ -8,6 +8,7 @@
 char *path_barbadi(const char *command)
 {
 	char *path = getenv("PATH");
+	char *token = strtok(path, ":");
 
 	while (token != NULL)
 	{
