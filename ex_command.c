@@ -41,12 +41,12 @@ void ex_command(char **args)
 					free(command_kan);
 					dir = strtok(NULL, ":");
 				}
-				if (strcmp(command, "exit") == 0)
-				{
-					exit(EXIT_FAILURE);
-				}
 				if (dir == NULL)
 				{
+					if (strcmp(command, "exit") == 0)
+					{
+						exit(EXIT_SUCCESS);
+					}
 					fprintf(stderr, "command not found in PATH: %s\n", command);
 					free(path_copy);
 					exit(EXIT_SUCCESS);
