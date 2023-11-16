@@ -1,13 +1,4 @@
 #include "main.h"
-
-/**
- *_calloc -allocated memoria for nmeb elemn de zise bytes
- *@nmemb: number of element in the array
- *@size: bytes for each position in the array
- *Return: pointer void
- */
-
-
 void *_calloc(unsigned int num, unsigned int han)
 {
 	char *D;
@@ -26,13 +17,6 @@ void *_calloc(unsigned int num, unsigned int han)
 	return (D);
 
 }
-
-/**
- *_puts - prints a string
- *@str: A to be printed
- *
- *Return: void
- */
 void _puts(char *jch)
 {
 	int j;
@@ -44,12 +28,6 @@ void _puts(char *jch)
 	_putchar('\n');
 }
 
-/**
- * search - gets the path to execute commands
- * @environ: Environment variable
- * Return: kalat_path (array of directories containing the command)
- *	or NULL on failure
- **/
 char **search(char **nano)
 {
 	int iddo = 0;
@@ -64,14 +42,6 @@ char **search(char **nano)
 	}
 	return (sarara);
 }
-
-/**
- * _itoa - converts an integer to ASCII
- * @num: number
- * @base: base
- * reference: geeksforgeeks
- * Return: character string
- **/
 char *_itoa(int lak, int hun)
 {
 	static char *kal = "0123456789abcdef";
@@ -98,14 +68,6 @@ char *_itoa(int lak, int hun)
 
 	return (kr);
 }
-
-/**
- * str_concat - concatenate two strings
- * @s1: first string
- * @s2: second string
- *
- * Return: pointer to the concatenated string
- */
 char *str_concat(char *D1, char *D2)
 {
 	char *ch;
@@ -139,12 +101,6 @@ char *str_concat(char *D1, char *D2)
 	return (ch);
 
 }
-#include "main.h"
-
-/**
- * printenv - prints the current environment
- * @environ: environment variable
- */
 void printenv(char **nano)
 {
 	int s = 0;
