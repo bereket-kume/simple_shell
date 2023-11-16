@@ -1,10 +1,5 @@
 #include "main.h"
 
-/**
- * handle_signal - handles EOF signal
- * @signal: EOF indicator
- * Return: void
- */
 
 void handle_signal(int signal)
 {
@@ -13,13 +8,7 @@ void handle_signal(int signal)
 	fflush(stdout);
 }
 
-/**
- * _error - prints the error output of a file
- * @argv: name of program
- * @count: number of prompt
- * @args: command to be put in
- * Return: 0 on success
- */
+
 int *_error(char *argv, int count, char *args)
 {
 	char *number;
@@ -36,12 +25,7 @@ int *_error(char *argv, int count, char *args)
 	return (0);
 }
 
-/**
- * _stat - get file status
- * @cmd: array of commands
- * @menged: array of directory paths
- * Return: 1 on success
- **/
+
 int _stat(char **cmd, char **menged)
 {
 	char *concat_str = NULL, *new_concat = NULL;
