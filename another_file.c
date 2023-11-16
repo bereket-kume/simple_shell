@@ -5,16 +5,16 @@
  * @s: integer to be used
  * Return: length of string
  */
-int _strlen(const char *s)
+int _strlen(const char *jch)
 {
-	int i;
+	int lak;
 
-	i = 0;
-	while (s[i] != '\0')
+	lak = 0;
+	while (jch[lak] != '\0')
 	{
-		i++;
+		lak++;
 	}
-	return ((i + 1));
+	return ((lak + 1));
 }
 
 /**
@@ -23,17 +23,17 @@ int _strlen(const char *s)
  * @dest: variable that string will be copied to
  * Return: dest
  */
-char *_strcpy(char *dest, char *src)
+char *_strcpy(char *ch, char *ka)
 {
-	int p;
+	int D;
 
-	for (p = 0; src[p] != '\0'; p++)
+	for (D = 0; ka[D] != '\0'; D++)
 	{
-		dest[p] = src[p];
+		ch[D] = ka[D];
 	}
-	dest[p] = '\0';
+	ch[D] = '\0';
 
-	return (dest);
+	return (ch);
 }
 
 /**
@@ -44,17 +44,17 @@ char *_strcpy(char *dest, char *src)
  * @n: number of bytes to be transfered
  * Return:dest
  */
-char *_memcpy(char *dest, char *src, unsigned int n)
+char *_memcpy(char *ch, char *ka, unsigned int D)
 {
-	int i;
+	int j;
 
-	for (i = 0; n > 0; i++)
+	for (j = 0; D > 0; j++)
 	{
-		dest[i] = src[i];
-		n--;
+		ch[j] = ka[j];
+		D--;
 	}
 
-	return (dest);
+	return (ch);
 }
 
 /**
@@ -64,28 +64,28 @@ char *_memcpy(char *dest, char *src, unsigned int n)
  * Return: String
  */
 
-char *_strdup(char *str)
+char *_strdup(char *jch)
 {
-	char *dup;
-	unsigned int i, count;
+	char *man;
+	unsigned int j, lak;
 
-	i = 0;
-	count = 0;
-	if (str == NULL)
+	j = 0;
+	lak = 0;
+	if (jch == NULL)
 		return (NULL);
-	while (str[i] != '\0')
+	while (jch[j] != '\0')
 	{
-		i++;
-		count++;
+		j++;
+		lak++;
 	}
-	count++;
-	dup = malloc(sizeof(char) * count);
-	if (dup == NULL)
+	lak++;
+	man = malloc(sizeof(char) * lak);
+	if (man == NULL)
 		return (NULL);
-	for (i = 0; i < sizeof(char) * count; i++)
-		dup[i] = str[i];
+	for (j = 0; j < sizeof(char) * lak; j++)
+		man[j] = jch[j];
 
-	return (dup);
+	return (man);
 }
 /**
  * _strcmp - compares two strings
@@ -94,17 +94,17 @@ char *_strdup(char *str)
  * Return: integer
  */
 
-int _strcmp(char *s1, char *s2)
+int _strcmp(char *jch1, char *jch2)
 {
-	int s;
+	int n;
 
-	s = 0;
-	while (s1[s] != '\0' && s2[s] != '\0')
+	n = 0;
+	while (jch1[n] != '\0' && jch2[n] != '\0')
 	{
-		if (s1[s] != s2[s])
-			return (s1[s] - s2[s]);
+		if (jch1[n] != jch2[n])
+			return (jch1[n] - jch2[n]);
 
-		s++;
+		n++;
 	}
 
 	return (0);
