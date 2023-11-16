@@ -1,4 +1,10 @@
 #include "main.h"
+/**
+ *_calloc is function that parse our input
+ *@num: is our first input
+ *@han: is our second input
+ *Return: nothing
+ */
 void *_calloc(unsigned int num, unsigned int han)
 {
 	char *D;
@@ -17,6 +23,11 @@ void *_calloc(unsigned int num, unsigned int han)
 	return (D);
 
 }
+/**
+ *_puts - is function that find command
+ *@jch: is our first input
+ *Return: nothing
+ */
 void _puts(char *jch)
 {
 	int j;
@@ -27,7 +38,11 @@ void _puts(char *jch)
 	}
 	_putchar('\n');
 }
-
+/**
+ *search - is function that search for command
+ *@nano: is parameter
+ *Return: nothing
+ */
 char **search(char **nano)
 {
 	int iddo = 0;
@@ -42,6 +57,7 @@ char **search(char **nano)
 	}
 	return (sarara);
 }
+
 char *_itoa(int lak, int hun)
 {
 	static char *kal = "0123456789abcdef";
