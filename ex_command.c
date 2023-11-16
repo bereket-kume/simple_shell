@@ -1,43 +1,21 @@
 #include "main.h"
 
-
+/**
+ * execute_cmd - executes a command as a child process
+ * @av: array of arguments
+ * @args: array of parsed arguments
+ * @env: environment variables
+ * @ymh: status of the main function
+ * @kotari: command count
+ *
+ * Return: 1 on success
+ */
 
 int execute_cmd(char **av, char **args, char **env, int ymh, int kotari)
 {
 	pid_t pid;
 	int status;
 
-<<<<<<< HEAD
-				while(dir != NULL)
-				{
-					command_kan = malloc(strlen(dir) + strlen(command) + 2);
-					sprintf(command_kan, "%s/%s", dir, command);
-					if(access(command_kan, X_OK) == 0)
-					{
-						break;
-					}
-					free(command_kan);
-					dir = strtok(NULL, ":");
-				}
-				if (dir == NULL)
-				{
-					if (strcmp(command, "exit") == 0)
-					{
-						exit(EXIT_SUCCESS);
-					}
-					fprintf(stderr, "command not found in PATH: %s\n", command);
-					free(path_copy);
-					exit(EXIT_SUCCESS);
-				}
-				free(path_copy);
-			}
-			if  (execve(command_kan, args, NULL) == -1)
-			{
-				perror("execve error");
-				exit(EXIT_FAILURE);
-			}
-		}
-		else
 	if (args == NULL)
 		return (-1);
 
