@@ -1,6 +1,10 @@
 #include "main.h"
 
-
+/**
+ *handle_signal - is function that handle prompt
+ *@srs: is our first parameter
+ *Return: nothing
+ */
 void handle_signal(int srs)
 {
 	(void) srs;
