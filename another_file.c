@@ -1,4 +1,9 @@
 #include "main.h"
+/**
+ *_strlen - is function perform task
+ *@jch: is our first parameter
+ *Return: nothing
+ */
 int _strlen(const char *jch)
 {
 	int lak;
@@ -10,6 +15,12 @@ int _strlen(const char *jch)
 	}
 	return ((lak + 1));
 }
+/**
+ *_strcpy - is function that perrfform copy of text
+ *@ch: is first argument
+ *@ka: is our srgument
+ *Return: nothing
+ */
 char *_strcpy(char *ch, char *ka)
 {
 	int D;
@@ -22,6 +33,13 @@ char *_strcpy(char *ch, char *ka)
 
 	return (ch);
 }
+/**
+ *_memcpy - is function copy function
+ *@ch: is argument
+ *@ka: is our parameter
+ *@D: is our third parameter
+ *Return: nothing
+ */
 char *_memcpy(char *ch, char *ka, unsigned int D)
 {
 	int j;
@@ -34,6 +52,11 @@ char *_memcpy(char *ch, char *ka, unsigned int D)
 
 	return (ch);
 }
+/**
+ *_strdup - is function that dupilcate input
+ *@jch: is our first parameter
+ *Return: nothing
+ */
 
 char *_strdup(char *jch)
 {
@@ -58,7 +81,12 @@ char *_strdup(char *jch)
 
 	return (man);
 }
-
+/**
+ *_strcmp - is function that compare string
+ *@jch1: is our first parameter
+ *@jch2: is our argument
+ *Return: nothing
+ */
 
 int _strcmp(char *jch1, char *jch2)
 {

@@ -1,8 +1,18 @@
 #include "main.h"
-
+/**
+ *handle_exit - is function handle_exit
+ *@guyya: is our first parameter
+ *@sarara: is second parmeter
+ *Return: nothing
+ */
 void handle_exit(char **guyya, char *sarara);
 
-
+/**
+ *split_str - is function that spilt input string
+ *@sarara: input from command
+ *@env: input to be checked
+ *Return: nothing
+ */
 char **split_str(char *sarara, char **env)
 {
 	char *tokenized_j, *sepval = " \t\r\n\a";
@@ -40,6 +50,12 @@ char **split_str(char *sarara, char **env)
 	return (guyya);
 
 }
+/**
+ *handle_exit - is function exit command
+ *@guyya: is our parameter
+ *@sarara: is our parameter
+ *Return: nothing
+ */
 void handle_exit(char **guyya, char *sarara)
 {
 	int status = 0;
@@ -54,6 +70,11 @@ void handle_exit(char **guyya, char *sarara)
 	free(guyya);
 	exit(status);
 }
+/**
+ *_atoi - is function works on input form command line
+ *@a: is parameter of our function
+ *Return: nothing
+ */
 int _atoi(char *a)
 {
 	int result = 0;

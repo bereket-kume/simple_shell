@@ -1,4 +1,13 @@
 #include "main.h"
+/**
+ *execute_cmd - is function execute command line
+ *@adv: is our parameter
+ *@value: is our input
+ *@env: is our input
+ *@num: is our input parameter
+ *@lk: is our input parameter
+ *@Return: -1 or 0
+ */
 
 int execute_cmd(char **adv, char **value, char **env, int num, int lk)
 {
