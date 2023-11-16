@@ -1,10 +1,4 @@
 #include "main.h"
-
-/**
- * _strlen - returns a string
- * @s: integer to be used
- * Return: length of string
- */
 int _strlen(const char *jch)
 {
 	int lak;
@@ -16,13 +10,6 @@ int _strlen(const char *jch)
 	}
 	return ((lak + 1));
 }
-
-/**
- * *_strcpy - copies a string pointed to by src to dest
- * @src: variale where string will be copied from
- * @dest: variable that string will be copied to
- * Return: dest
- */
 char *_strcpy(char *ch, char *ka)
 {
 	int D;
@@ -35,15 +22,6 @@ char *_strcpy(char *ch, char *ka)
 
 	return (ch);
 }
-
-/**
- * _memcpy - copies bytes from src to dest
- *
- * @dest: memory to be transfereed to
- * @src: memory to be transferred from
- * @n: number of bytes to be transfered
- * Return:dest
- */
 char *_memcpy(char *ch, char *ka, unsigned int D)
 {
 	int j;
@@ -56,13 +34,6 @@ char *_memcpy(char *ch, char *ka, unsigned int D)
 
 	return (ch);
 }
-
-/**
- * _strdup - copies string and returns its pointer
- *
- * @str: string to be copied
- * Return: String
- */
 
 char *_strdup(char *jch)
 {
@@ -87,12 +58,7 @@ char *_strdup(char *jch)
 
 	return (man);
 }
-/**
- * _strcmp - compares two strings
- * @s1: first string
- * @s2: second string
- * Return: integer
- */
+
 
 int _strcmp(char *jch1, char *jch2)
 {
