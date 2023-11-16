@@ -1,35 +1,13 @@
 #include "main.h"
-/**
- *ex_command - is function that execute commands
- *@args: is our input form command line
- *Return: Nothing
- */
-void ex_command(char **args)
-{
-	char *command = NULL;
-	char *command_kan = NULL;
-	int status;
-	if (args && args[0])
-	{
-		pid_t pid = fork();
-		if (pid == -1)
-		{
-			perror("fork error");
-			exit(EXIT_FAILURE);
-		}
-		else if (pid == 0)
-		{
-			command = args[0];
-			if (strchr(command, '/') != NULL)
-			{
-				command_kan = strdup(command);
-			}
-			else
-			{
-				char *path = getenv("PATH");
-				char *path_copy = strdup(path);
-				char *dir = strtok(path_copy, ":");
 
+
+
+int execute_cmd(char **av, char **args, char **env, int ymh, int kotari)
+{
+	pid_t pid;
+	int status;
+
+<<<<<<< HEAD
 				while(dir != NULL)
 				{
 					command_kan = malloc(strlen(dir) + strlen(command) + 2);
@@ -60,10 +38,34 @@ void ex_command(char **args)
 			}
 		}
 		else
-		{
-			waitpid(pid, &status, 0);
-		}
-		free(command_kan);
-	}
+=======
+	if (args == NULL)
+		return (-1);
 
+	pid = fork();
+	if (pid  < 0)
+	{
+		perror("./hsh: ");
+		exit(1);
+	}
+	else if (pid == 0)
+	{
+		if (execve(args[0], args, env) == -1)
+>>>>>>> 5388fc2975ef002ae46f229681dccfd0805b7dcf
+		{
+			_error(av[0], kotari, args[0]);
+			free(args);
+			exit(1);
+		}
+		exit(0);
+	}
+	else
+	{
+		if (ymh == 1)
+			free(args[0]);
+
+		free(args);
+		waitpid(pid, &status, WUNTRACED);
+	}
+	return (1);
 }

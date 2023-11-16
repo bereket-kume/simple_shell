@@ -1,10 +1,11 @@
 #include "main.h"
-/**
- *display_prompt - is function that display prompt to user
- *Return: nothing
- */
-void display_prompt(void)
+
+
+void prompt(void)
 {
-	_putchar('$');
-	_putchar(' ');
+	char *buffer = getcwd(NULL, 0);
+
+	if (isatty(STDIN_FILENO))
+		prints("$ ");
+	free(buffer);
 }
