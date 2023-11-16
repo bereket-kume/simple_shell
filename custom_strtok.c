@@ -1,93 +1,79 @@
 #include "main.h"
 
-void handle_exit(char **kalat, char *line);
+void handle_exit(char **guyya, char *sarara);
 
 
-char **split_str(char *line, char **env)
+char **split_str(char *sarara, char **env)
 {
-	char *tokenized_sentence, *separator = " \t\r\n\a";
-	char **kalat;
-	int max_kalat = 64, kotari = 0;
+	char *tokenized_j, *sepval = " \t\r\n\a";
+	char **guyya;
+	int max_val = 64, lk = 0;
 
-	if (line == NULL)
+	if (sarara == NULL)
 	{
 		return (0);
 	}
-	kalat = _calloc(sizeof(char *), max_kalat);
-	if (kalat == NULL)
+	guyya = _calloc(sizeof(char *), max_val);
+	if (guyya == NULL)
 	{
 		prints("error");
 		exit(EXIT_FAILURE);
 	}
-
-	tokenized_sentence = strtok(line, separator);
-	while (tokenized_sentence != NULL)
+	tokenized_j = strtok(sarara, sepval);
+	while (tokenized_j != NULL)
 	{
-		kalat[kotari] = tokenized_sentence;
-		kotari++;
-		tokenized_sentence = strtok(NULL, separator);
+		guyya[lk] = tokenized_j;
+		lk++;
+		tokenized_j = strtok(NULL, sepval);
 	}
-
-	if (kalat[0] == NULL)
-		kalat[kotari] = "\n";
-
-	if (_strcmp(kalat[0], "exit") == 0)
+	if (guyya[0] == NULL)
+		guyya[lk] = "\n";
+	if (_strcmp(guyya[0], "exit") == 0)
 	{
-		if (kalat[1] != NULL)
-			handle_exit(kalat, line);
-
+		if (guyya[1] != NULL)
+			handle_exit(guyya, sarara);
 		else
-			handle_exit(kalat, line);
+			handle_exit(guyya, sarara);
 	}
-	if ((_strcmp(kalat[0], "env") == 0) && kalat[1] == NULL)
+	if ((_strcmp(guyya[0], "env") == 0) && guyya[1] == NULL)
 		printenv(env);
-
-	return (kalat);
+	return (guyya);
 
 }
-
-
-
-
-void handle_exit(char **kalat, char *line)
+void handle_exit(char **guyya, char *sarara)
 {
 	int status = 0;
 
-	if (kalat[1] != NULL)
+	if (guyya[1] != NULL)
 	{
-		status = _atoi(kalat[1]);
-		if (status == 0 && _strcmp(kalat[1], "0") != 0)
+		status = _atoi(guyya[1]);
+		if (status == 0 && _strcmp(guyya[1], "0") != 0)
 			status = 2;
 	}
-
-	free(line);
-	free(kalat);
+	free(sarara);
+	free(guyya);
 	exit(status);
 }
-
-
 int _atoi(char *a)
 {
 	int result = 0;
-	int sign = 1;
+	int key = 1;
 	int i = 0;
 
 	while (a[i] == ' ')
 	{
 		i++;
 	}
-
 	if (a[i] == '-' || a[i] == '+')
 	{
-		sign = (a[i] == '-') ? -1 : 1;
+		key = (a[i] == '-') ? -1 : 1;
 		i++;
 	}
-
 	while (a[i] > '\0' && a[i] <= '9')
 	{
 		result = result * 10 + (a[i] - '0');
 		i++;
 	}
 
-	return (result * sign);
+	return (result * key);
 }

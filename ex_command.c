@@ -1,24 +1,12 @@
 #include "main.h"
 
-/**
- * execute_cmd - executes a command as a child process
- * @av: array of arguments
- * @args: array of parsed arguments
- * @env: environment variables
- * @ymh: status of the main function
- * @kotari: command count
- *
- * Return: 1 on success
- */
-
-int execute_cmd(char **av, char **args, char **env, int ymh, int kotari)
+int execute_cmd(char **adv, char **value, char **env, int num, int lk)
 {
 	pid_t pid;
 	int status;
 
-	if (args == NULL)
+	if (value == NULL)
 		return (-1);
-
 	pid = fork();
 	if (pid  < 0)
 	{
@@ -27,20 +15,20 @@ int execute_cmd(char **av, char **args, char **env, int ymh, int kotari)
 	}
 	else if (pid == 0)
 	{
-		if (execve(args[0], args, env) == -1)
+		if (execve(value[0], value, env) == -1)
 		{
-			_error(av[0], kotari, args[0]);
-			free(args);
+			_error(adv[0], lk, value[0]);
+			free(value);
 			exit(1);
 		}
 		exit(0);
 	}
 	else
 	{
-		if (ymh == 1)
-			free(args[0]);
+		if (num == 1)
+			free(value[0]);
 
-		free(args);
+		free(value);
 		waitpid(pid, &status, WUNTRACED);
 	}
 	return (1);

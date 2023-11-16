@@ -1,23 +1,23 @@
 #include "main.h"
 
 
-void handle_signal(int signal)
+void handle_signal(int srs)
 {
-	(void) signal;
+	(void) srs;
 	prints("\n$ ");
 	fflush(stdout);
 }
 
 
-int *_error(char *argv, int count, char *args)
+int *_error(char *argv, int value, char *args)
 {
-	char *number;
+	char *digit;
 
-	number = _itoa(count, 10);
+	digit = _itoa(value, 10);
 
 	write(2, argv, _strlen(argv));
 	write(2, ": ", 2);
-	write(2, number, _strlen(number));
+	write(2, digit, _strlen(digit));
 	write(2, ": ", 2);
 	write(2, args, _strlen(args));
 	perror(" ");
@@ -26,36 +26,36 @@ int *_error(char *argv, int count, char *args)
 }
 
 
-int _stat(char **cmd, char **menged)
+int _stat(char **command_line, char **control)
 {
-	char *concat_str = NULL, *new_concat = NULL;
-	int kotari;
+	char *fullstr = NULL, *fullconcat = NULL;
+	int lk;
 	struct stat sb;
 
-	if (menged == NULL)
+	if (control == NULL)
 	{
-		free(menged);
-		free(cmd);
+		free(control);
+		free(command_line);
 		return (0);
 	}
-	for (kotari = 0; menged[kotari] != NULL ; kotari++)
+	for (lk = 0; control[lk] != NULL ; lk++)
 	{
-		concat_str = str_concat(menged[kotari], "/");
-		new_concat = str_concat(concat_str, cmd[0]);
+		fullstr= str_concat(control[lk], "/");
+		fullconcat = str_concat(fullstr, command_line[0]);
 
-		if (stat(new_concat, &sb) == 0 && (sb.st_mode & S_IXUSR))
+		if (stat(fullconcat, &sb) == 0 && (sb.st_mode & S_IXUSR))
 		{
-			cmd[0] = new_concat;
-			free(concat_str);
-			free(menged[0]);
-			free(menged);
+			command_line[0] = fullconcat;
+			free(fullstr);
+			free(control[0]);
+			free(control);
 			return (1);
 		}
 
-		free(concat_str);
-		free(new_concat);
+		free(fullstr);
+		free(fullconcat);
 	}
-	free(menged[0]);
-	free(menged);
+	free(control[0]);
+	free(control);
 	return (0);
 }
