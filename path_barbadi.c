@@ -1,41 +1,31 @@
 #include "main.h"
-
-/**
- * _which - identifies the path of the command (fpath)
- * that is being passed to it
- * @fpath: the command that is being passed to it
- *
- * Return: an array of directories containing the command or NULL on failure
- */
-char **_which(char *fpath)
+char **_which(char *essa)
 {
-	int size = 64;
-	int i = 0;
-	char *copy_path = NULL;
-	char *delim = ":=";
-
-	char **dirs = _calloc(sizeof(char *), size);
-	char *token = NULL;
-
-	if (fpath == NULL)
+	int han = 64;
+	int k = 0;
+	char *kara = NULL;
+	char *bal = ":=";
+	char **kal = _calloc(sizeof(char *), han	);
+	char *lam = NULL;
+	if (essa == NULL)
 	{
-		free(fpath);
+		free(essa);
 		return (0);
 	}
-	if (dirs == NULL)
+	if (kal == NULL)
 	{
-		free(fpath);
+		free(essa);
 		perror("Error allocated memory");
 		return (NULL);
 	}
-	copy_path = _strdup(fpath); /* Copy the fpath string */
-	token = strtok(copy_path, delim); /* Split the string by the delimiter */
+	kara = _strdup(essa);
+	lam = strtok(kara, bal);
 
-	while (token != NULL)
+	while (lam != NULL)
 	{
-		dirs[i] = token;
-		i++;
-		token = strtok(NULL, delim);
+		kal[k] = lam;
+		k++;
+		lam = strtok(NULL, bal);
 	}
-	return (dirs);
+	return (kal);
 }
