@@ -1,5 +1,8 @@
 #include "main.h"
-
+/**
+ *read_input - is function that take input form user
+ *Return: nothing
+ */
 char *read_input(void)
 {
 	char *sarara = NULL;

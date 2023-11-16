@@ -1,12 +1,18 @@
 #include "main.h"
+/**
+ *_which - is wich is used execute command
+ *@essa: is our first parameter
+ *Return: nothing
+ */
 char **_which(char *essa)
 {
 	int han = 64;
 	int k = 0;
 	char *kara = NULL;
 	char *bal = ":=";
-	char **kal = _calloc(sizeof(char *), han	);
+	char **kal = _calloc(sizeof(char *), han);
 	char *lam = NULL;
+
 	if (essa == NULL)
 	{
 		free(essa);
