@@ -3,29 +3,29 @@
 
 int main(int ac __attribute__((unused)), char **av, char **env)
 {
-	char *line;
+	char *sarara;
 	char **args, **path;
-	int kotari = 0, huneta = 0;
+	int lk= 0, key_value = 0;
 	(void) av;
 	signal(SIGINT, handle_signal);
 
 	for (;;)
 	{
 		prompt();
-		line = read_input();
-		args = split_str(line, env);
+		sarara = read_input();
+		args = split_str(sarara, env);
 		if ((_strcmp(args[0], "\n") != 0) && (_strcmp(args[0], "env") != 0))
 		{
-			kotari += 1;
-			path = search(env); /* Search for PATH in the environment variable */
-			huneta = _stat(args, path);
-			execute_cmd(av, args, env, huneta, kotari);
+			lk += 1;
+			path = search(env); 
+			key_value = _stat(args, path);
+			execute_cmd(av, args, env, key_value, lk);
 		}
 		else
 		{
 			free(args);
 		}
-		free(line);
+		free(sarara);
 	}
 	return (0);
 }

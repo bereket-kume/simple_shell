@@ -3,9 +3,9 @@
 
 void prompt(void)
 {
-	char *buffer = getcwd(NULL, 0);
+	char *charbuffer = getcwd(NULL, 0);
 
 	if (isatty(STDIN_FILENO))
 		prints("$ ");
-	free(buffer);
+	free(charbuffer);
 }
