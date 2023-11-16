@@ -38,7 +38,6 @@ int execute_cmd(char **av, char **args, char **env, int ymh, int kotari)
 			}
 		}
 		else
-=======
 	if (args == NULL)
 		return (-1);
 
@@ -51,7 +50,6 @@ int execute_cmd(char **av, char **args, char **env, int ymh, int kotari)
 	else if (pid == 0)
 	{
 		if (execve(args[0], args, env) == -1)
->>>>>>> 5388fc2975ef002ae46f229681dccfd0805b7dcf
 		{
 			_error(av[0], kotari, args[0]);
 			free(args);
