@@ -1,25 +1,41 @@
 #include "main.h"
-#define PATH_MAX 4096
+
 /**
- *path_barbadi - is function that find path for the command line
- *@command: is parameter that we revieve from user
- *Return: NULL always
+ * _which - identifies the path of the command (fpath)
+ * that is being passed to it
+ * @fpath: the command that is being passed to it
+ *
+ * Return: an array of directories containing the command or NULL on failure
  */
-char *path_barbadi(const char *command)
+char **_which(char *fpath)
 {
-	char *path = getenv("PATH");
-	char *token = strtok(path, ":");
+	int size = 64;
+	int i = 0;
+	char *copy_path = NULL;
+	char *delim = ":=";
+
+	char **dirs = _calloc(sizeof(char *), size);
+	char *token = NULL;
+
+	if (fpath == NULL)
+	{
+		free(fpath);
+		return (0);
+	}
+	if (dirs == NULL)
+	{
+		free(fpath);
+		perror("Error allocated memory");
+		return (NULL);
+	}
+	copy_path = _strdup(fpath); /* Copy the fpath string */
+	token = strtok(copy_path, delim); /* Split the string by the delimiter */
 
 	while (token != NULL)
 	{
-		char full_path[PATH_MAX];
-
-		snprintf(full_path, sizeof(full_path), "%s/%s", token, command);
-		if (access(full_path, F_OK) == 0)
-		{
-			return (strdup(full_path));
-		}
-		token = strtok(NULL, ":");
+		dirs[i] = token;
+		i++;
+		token = strtok(NULL, delim);
 	}
-	return (NULL);
+	return (dirs);
 }
