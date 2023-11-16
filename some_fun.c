@@ -8,22 +8,22 @@
  */
 
 
-void *_calloc(unsigned int nmemb, unsigned int size)
+void *_calloc(unsigned int num, unsigned int han)
 {
-	char *p;
-	unsigned int i;
+	char *D;
+	unsigned int j;
 
-	if (nmemb == 0 || size == 0)
+	if (num == 0 || han == 0)
 		return (NULL);
 
-	p = malloc(nmemb * size);
-	if (p == NULL)
+	D = malloc(num * han);
+	if (D == NULL)
 		return (NULL);
 
-	for (i = 0; i < nmemb * size; i++)
-		p[i] = 0;
+	for (j = 0; j < num * han; j++)
+		D[j] = 0;
 
-	return (p);
+	return (D);
 
 }
 
@@ -33,13 +33,13 @@ void *_calloc(unsigned int nmemb, unsigned int size)
  *
  *Return: void
  */
-void _puts(char *str)
+void _puts(char *jch)
 {
-	int i;
+	int j;
 
-	for (i = 0 ; str[i] != '\0' ; i++)
+	for (j = 0 ; jch[j] != '\0' ; j++)
 	{
-		_putchar(str[i]);
+		_putchar(jch[j]);
 	}
 	_putchar('\n');
 }
@@ -50,19 +50,19 @@ void _puts(char *str)
  * Return: kalat_path (array of directories containing the command)
  *	or NULL on failure
  **/
-char **search(char **environ)
+char **search(char **nano)
 {
-	int position = 0;
-	char **kalat_path;
+	int iddo = 0;
+	char **sarara;
 
-	for (; environ[position] != NULL ; position++)
+	for (; nano[iddo] != NULL ; iddo++)
 	{
-		if (environ[position][0] == 'P' && environ[position][2] == 'T')
+		if (nano[iddo][0] == 'P' && nano[iddo][2] == 'T')
 		{
-			kalat_path = _which(environ[position]);
+			sarara = _which(nano[iddo]);
 		}
 	}
-	return (kalat_path);
+	return (sarara);
 }
 
 /**
@@ -72,31 +72,31 @@ char **search(char **environ)
  * reference: geeksforgeeks
  * Return: character string
  **/
-char *_itoa(int num, int base)
+char *_itoa(int lak, int hun)
 {
-	static char *digits = "0123456789abcdef";
-	static char buffer[50];
-	char sign = 0;
-	char *ptr;
-	unsigned long n = (unsigned long)num;
+	static char *kal = "0123456789abcdef";
+	static char buf[50];
+	char mal = 0;
+	char *kr;
+	unsigned long D = (unsigned long)lak;
 
-	if (num < 0)
+	if (lak < 0)
 	{
-		n = (unsigned long)(-num);
-		sign = '-';
+		D = (unsigned long)(-lak);
+		mal = '-';
 	}
 
-	ptr = &buffer[49];
-	*ptr = '\0';
+	kr = &buf[49];
+	*kr = '\0';
 	do {
-		*--ptr = digits[n % base];
-		n /= base;
-	} while (n != 0);
+		*--kr = kal[D % hun];
+		D /= hun;
+	} while (D != 0);
 
-	if (sign)
-		*--ptr = sign;
+	if (mal)
+		*--kr = mal;
 
-	return (ptr);
+	return (kr);
 }
 
 /**
@@ -106,42 +106,37 @@ char *_itoa(int num, int base)
  *
  * Return: pointer to the concatenated string
  */
-char *str_concat(char *s1, char *s2)
+char *str_concat(char *D1, char *D2)
 {
-	char *dest;
-	unsigned int i, j, size;
+	char *ch;
+	unsigned int k, l, han;
 
-	/* If the array is empty */
-	if (s1 == NULL)
-		s1 = "";
+	if (D1 == NULL)
+		D1 = "";
 
-	if (s2 == NULL)
-		s2 = "";
-	/* Count total size */
+	if (D2 == NULL)
+		D2 = "";
 
-	size = (_strlen(s1) + _strlen(s2) + 1);
+	han = (_strlen(D1) + _strlen(D2) + 1);
 
-	/* Allocate memory */
+	ch = (char *) malloc(han * sizeof(char));
 
-	dest = (char *) malloc(size * sizeof(char));
-
-	if (dest == 0)
+	if (ch == 0)
 	{
 		return (NULL);
 	}
 
-	/* Concatenate arrays */
-	for (i = 0; *(s1 + i) != '\0'; i++)
-		*(dest + i) = *(s1 + i);
+	for (k = 0; *(D1 + k) != '\0'; k++)
+		*(ch + k) = *(D1 + k);
 
-	for (j = 0; *(s2 + j) != '\0'; j++)
+	for (l = 0; *(D2 + l) != '\0'; l++)
 	{
-		*(dest + i) = *(s2 + j);
-		i++;
+		*(ch + k) = *(D2 + l);
+		k++;
 
 	}
-	dest[i] = '\0';
-	return (dest);
+	ch[k] = '\0';
+	return (ch);
 
 }
 #include "main.h"
@@ -150,10 +145,10 @@ char *str_concat(char *s1, char *s2)
  * printenv - prints the current environment
  * @environ: environment variable
  */
-void printenv(char **environ)
+void printenv(char **nano)
 {
-	int i = 0;
+	int s = 0;
 
-	for (; environ[i] ; i++)
-		_puts(environ[i]);
+	for (; nano[s] ; s++)
+		_puts(nano[s]);
 }
