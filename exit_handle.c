@@ -66,7 +66,6 @@ char *_strchr(char *s, char c)
 	return (NULL);
 }
 
-#include "main.h.h"
 
 /**
  * get_environ - returns the string array copy of our environ

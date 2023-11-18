@@ -93,8 +93,6 @@ int _setenv(info_t *info, char *var, char *value)
 	return (0);
 }
 
-errors.c
-#include "shell.h"
 
 /**
  * _erratoi - converts a string to an integer
