@@ -1,131 +1,118 @@
 #include "main.h"
-/**
- *_calloc - is function that parse our input
- *@num: is our first input
- *@han: is our second input
- *Return: nothing
- */
-void *_calloc(unsigned int num, unsigned int han)
+
+int is_chain(info_t *info, char *buf, size_t *p)
 {
-	char *D;
-	unsigned int j;
+	size_t j = *p;
 
-	if (num == 0 || han == 0)
-		return (NULL);
-
-	D = malloc(num * han);
-	if (D == NULL)
-		return (NULL);
-
-	for (j = 0; j < num * han; j++)
-		D[j] = 0;
-
-	return (D);
-
-}
-/**
- *_puts - is function that find command
- *@jch: is our first input
- *Return: nothing
- */
-void _puts(char *jch)
-{
-	int j;
-
-	for (j = 0 ; jch[j] != '\0' ; j++)
+	if (buf[j] == '|' && buf[j + 1] == '|')
 	{
-		_putchar(jch[j]);
+		buf[j] = 0;
+		j++;
+		info->cmd_buf_type = CMD_OR;
 	}
-	_putchar('\n');
-}
-/**
- *search - is function that search for command
- *@nano: is parameter
- *Return: nothing
- */
-char **search(char **nano)
-{
-	int iddo = 0;
-	char **sarara;
-
-	for (; nano[iddo] != NULL ; iddo++)
+	else if (buf[j] == '&' && buf[j + 1] == '&')
 	{
-		if (nano[iddo][0] == 'P' && nano[iddo][2] == 'T')
+		buf[j] = 0;
+		j++;
+		info->cmd_buf_type = CMD_AND;
+	}
+	else if (buf[j] == ';')
+	{
+		buf[j] = 0; 
+		info->cmd_buf_type = CMD_CHAIN;
+	}
+	else
+		return (0);
+	*p = j;
+	return (1);
+}
+
+void check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
+{
+	size_t j = *p;
+
+	if (info->cmd_buf_type == CMD_AND)
+	{
+		if (info->status)
 		{
-			sarara = _which(nano[iddo]);
+			buf[i] = 0;
+			j = len;
 		}
 	}
-	return (sarara);
+	if (info->cmd_buf_type == CMD_OR)
+	{
+		if (!info->status)
+		{
+			buf[i] = 0;
+			j = len;
+		}
+	}
+
+	*p = j;
 }
-/**
- *_itoa - is function that do some work
- *@lak: first parameter
- *@hun: is first parameter
- *Return: nothing
- */
-char *_itoa(int lak, int hun)
+
+int replace_alias(info_t *info)
 {
-	static char *kal = "0123456789abcdef";
-	static char buf[50];
-	char mal = 0;
-	char *kr;
-	unsigned long D = (unsigned long)lak;
+	int i;
+	list_t *node;
+	char *p;
 
-	if (lak < 0)
+	for (i = 0; i < 10; i++)
 	{
-		D = (unsigned long)(-lak);
-		mal = '-';
+		node = node_starts_with(info->alias, info->argv[0], '=');
+		if (!node)
+			return (0);
+		free(info->argv[0]);
+		p = _strchr(node->str, '=');
+		if (!p)
+			return (0);
+		p = _strdup(p + 1);
+		if (!p)
+			return (0);
+		info->argv[0] = p;
 	}
-
-	kr = &buf[49];
-	*kr = '\0';
-	do {
-		*--kr = kal[D % hun];
-		D /= hun;
-	} while (D != 0);
-
-	if (mal)
-		*--kr = mal;
-
-	return (kr);
+	return (1);
 }
-/**
- *str_concat - isfunction that do something
- *@D1: is our first parmater
- *@D2: is our second argument
- *Return: nothing
- */
-char *str_concat(char *D1, char *D2)
+int replace_vars(info_t *info)
 {
-	char *ch;
-	unsigned int k, l, han;
+	int i = 0;
+	list_t *node;
 
-	if (D1 == NULL)
-		D1 = "";
-
-	if (D2 == NULL)
-		D2 = "";
-
-	han = (_strlen(D1) + _strlen(D2) + 1);
-
-	ch = (char *) malloc(han * sizeof(char));
-
-	if (ch == 0)
+	for (i = 0; info->argv[i]; i++)
 	{
-		return (NULL);
+		if (info->argv[i][0] != '$' || !info->argv[i][1])
+			continue;
+
+		if (!_strcmp(info->argv[i], "$?"))
+		{
+			replace_string(&(info->argv[i]),
+				_strdup(convert_number(info->status, 10, 0)));
+			continue;
+		}
+		if (!_strcmp(info->argv[i], "$$"))
+		{
+			replace_string(&(info->argv[i]),
+				_strdup(convert_number(getpid(), 10, 0)));
+			continue;
+		}
+		node = node_starts_with(info->env, &info->argv[i][1], '=');
+		if (node)
+		{
+			replace_string(&(info->argv[i]),
+				_strdup(_strchr(node->str, '=') + 1));
+			continue;
+		}
+		replace_string(&info->argv[i], _strdup(""));
+
 	}
+	return (0);
+}
 
-	for (k = 0; *(D1 + k) != '\0'; k++)
-		*(ch + k) = *(D1 + k);
 
-	for (l = 0; *(D2 + l) != '\0'; l++)
-	{
-		*(ch + k) = *(D2 + l);
-		k++;
-
-	}
-	ch[k] = '\0';
-	return (ch);
-
+int replace_string(char **old, char *new)
+{
+	free(*old);
+	*old = new;
+	return (1);
 }
 
