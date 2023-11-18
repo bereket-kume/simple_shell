@@ -1,7 +1,15 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include "val.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <signal.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <sys/wait.h>
 extern char **environ;
 void _puts(char *str);
 int execute_cmd(char **av, char **args, char **environ, int ymh, int kotari);
