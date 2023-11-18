@@ -1,61 +1,45 @@
+
 #include "main.h"
+
 /**
- *main - the beging of our function
- *@ac: is our firat parameter
- *@av: is another parameter
- *@env: is third parameter
- *Return: nothing
+ * main - entry point
+ * @ac: arg count
+ * @av: arg vector
+ *
+ * Return: 0 on success, 1 on error
  */
+int main(int ac, char **av)
+{
+	info_t info[] = { INFO_INIT };
+	int fd = 2;
 
-int main(int ac __attribute__((unused)), char **av, char **env) {
-    char *sarara;
-    char **args, **path;
-    int lk = 0, key_value = 0;
-    signal(SIGINT, handle_signal);
+	asm ("mov %1, %0\n\t"
+		"add $3, %0"
+		: "=r" (fd)
+		: "r" (fd));
 
-    for (;;) {
-        printf("$ ");
-        fflush(stdout);
-        size_t bufsize = 0;
-        getline(&sarara, &bufsize, stdin);
-
-        char *token;
-        token = strtok(sarara, " \t\r\n\a");
-        int i = 0;
-        args = malloc(64 * sizeof(char *));
-        while (token != NULL) {
-            args[i++] = token;
-            token = strtok(NULL, " \t\r\n\a");
-        }
-        args[i] = NULL;
-
-        if (args[0] != NULL) {
-            lk += 1;
-            path = search(env);
-            key_value = _stat(args, path);
-
-            if (strcmp(args[0], "cd") == 0) {
-                handle_cd(args); 
-            } else {
-                pid_t pid = fork();
-                if (pid < 0) {
-                    perror("Fork error");
-                    exit(EXIT_FAILURE);
-                } else if (pid == 0) {
-                    if (execvp(args[0], args) == -1) {
-                        perror("Execution error");
-                        exit(EXIT_FAILURE);
-                    }
-                    exit(EXIT_SUCCESS);
-                } else {
-                    wait(NULL);
-                }
-            }
-        }
-
-        free(args);
-        free(sarara);
-    }
-
-    return 0;
+	if (ac == 2)
+	{
+		fd = open(av[1], O_RDONLY);
+		if (fd == -1)
+		{
+			if (errno == EACCES)
+				exit(126);
+			if (errno == ENOENT)
+			{
+				_eputs(av[0]);
+				_eputs(": 0: Can't open ");
+				_eputs(av[1]);
+				_eputchar('\n');
+				_eputchar(BUF_FLUSH);
+				exit(127);
+			}
+			return (EXIT_FAILURE);
+		}
+		info->readfd = fd;
+	}
+	populate_env_list(info);
+	read_history(info);
+	hsh(info, av);
+	return (EXIT_SUCCESS);
 }
