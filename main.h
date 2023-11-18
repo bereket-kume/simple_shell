@@ -12,7 +12,7 @@
 #include <sys/wait.h>
 extern char **environ;
 void _puts(char *str);
-int execute_cmd(char **args, char **environ, int ymh);
+int execute_cmd(char **av, char **args, char **environ, int ymh, int kotari);
 char **search(char **environ);
 char **_which(char *fpath);
 void handle_signal(int signal);
