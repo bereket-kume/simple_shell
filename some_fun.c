@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- *_calloc is function that parse our input
+ *_calloc - is function that parse our input
  *@num: is our first input
  *@han: is our second input
  *Return: nothing
@@ -58,10 +58,10 @@ char **search(char **nano)
 	return (sarara);
 }
 /**
- *_itoa is function that do some work
+ *_itoa - is function that do some work
  *@lak: first parameter
  *@hun: is first parameter
- *Reurn: nothing
+ *Return: nothing
  */
 char *_itoa(int lak, int hun)
 {
@@ -91,8 +91,8 @@ char *_itoa(int lak, int hun)
 }
 /**
  *str_concat - isfunction that do something
- *@D!: is our first parmater
- @D@: is our second argument
+ *@D1: is our first parmater
+ *@D2: is our second argument
  *Return: nothing
  */
 char *str_concat(char *D1, char *D2)
