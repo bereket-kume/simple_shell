@@ -47,6 +47,15 @@ char **split_str(char *sarara, char **env)
 	}
 	if ((_strcmp(guyya[0], "env") == 0) && guyya[1] == NULL)
 		printenv(env);
+	if (_strcmp(guyya[0], "setenv") == 0) {
+    		shell_setenv(guyya, env);
+   		 return (guyya);
+	}
+
+	if (_strcmp(guyya[0], "unsetenv") == 0) {
+  		shell_unsetenv(guyya, env);
+    		return (guyya);
+	}
 	return (guyya);
 
 }
