@@ -1,105 +1,80 @@
 #include "main.h"
-/**
- *_strlen - is function perform task
- *@jch: is our first parameter
- *Return: nothing
- */
-int _strlen(const char *jch)
-{
-	int lak;
 
-	lak = 0;
-	while (jch[lak] != '\0')
-	{
-		lak++;
-	}
-	return ((lak + 1));
+
+/**
+ **_memset - fills memory with a constant byte
+ *@s: the pointer to the memory area
+ *@b: the byte to fill *s with
+ *@n: the amount of bytes to be filled
+ *Return: (s) a pointer to the memory area s
+ */
+char *_memset(char *s, char b, unsigned int n)
+{
+	unsigned int i;
+
+	for (i = 0; i < n; i++)
+		s[i] = b;
+	return (s);
 }
+
 /**
- *_strcpy - is function that perrfform copy of text
- *@ch: is first argument
- *@ka: is our srgument
- *Return: nothing
+ * ffree - frees a string of strings
+ * @pp: string of strings
  */
-char *_strcpy(char *ch, char *ka)
+void ffree(char **pp)
 {
-	int D;
+	char **a = pp;
 
-	for (D = 0; ka[D] != '\0'; D++)
-	{
-		ch[D] = ka[D];
-	}
-	ch[D] = '\0';
-
-	return (ch);
+	if (!pp)
+		return;
+	while (*pp)
+		free(*pp++);
+	free(a);
 }
+
 /**
- *_memcpy - is function copy function
- *@ch: is argument
- *@ka: is our parameter
- *@D: is our third parameter
- *Return: nothing
+ * _realloc - reallocates a block of memory
+ * @ptr: pointer to previous malloc'ated block
+ * @old_size: byte size of previous block
+ * @new_size: byte size of new block
+ *
+ * Return: pointer to da ol'block nameen.
  */
-char *_memcpy(char *ch, char *ka, unsigned int D)
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	int j;
+	char *p;
 
-	for (j = 0; D > 0; j++)
-	{
-		ch[j] = ka[j];
-		D--;
-	}
+	if (!ptr)
+		return (malloc(new_size));
+	if (!new_size)
+		return (free(ptr), NULL);
+	if (new_size == old_size)
+		return (ptr);
 
-	return (ch);
-}
-/**
- *_strdup - is function that dupilcate input
- *@jch: is our first parameter
- *Return: nothing
- */
-
-char *_strdup(char *jch)
-{
-	char *man;
-	unsigned int j, lak;
-
-	j = 0;
-	lak = 0;
-	if (jch == NULL)
+	p = malloc(new_size);
+	if (!p)
 		return (NULL);
-	while (jch[j] != '\0')
-	{
-		j++;
-		lak++;
-	}
-	lak++;
-	man = malloc(sizeof(char) * lak);
-	if (man == NULL)
-		return (NULL);
-	for (j = 0; j < sizeof(char) * lak; j++)
-		man[j] = jch[j];
 
-	return (man);
+	old_size = old_size < new_size ? old_size : new_size;
+	while (old_size--)
+		p[old_size] = ((char *)ptr)[old_size];
+	free(ptr);
+	return (p);
 }
+
 /**
- *_strcmp - is function that compare string
- *@jch1: is our first parameter
- *@jch2: is our argument
- *Return: nothing
+ * bfree - frees a pointer and NULLs the address
+ * @ptr: address of the pointer to free
+ *
+ * Return: 1 if freed, otherwise 0.
  */
-
-int _strcmp(char *jch1, char *jch2)
+int bfree(void **ptr)
 {
-	int n;
-
-	n = 0;
-	while (jch1[n] != '\0' && jch2[n] != '\0')
+	if (ptr && *ptr)
 	{
-		if (jch1[n] != jch2[n])
-			return (jch1[n] - jch2[n]);
-
-		n++;
+		free(*ptr);
+		*ptr = NULL;
+		return (1);
 	}
-
 	return (0);
 }

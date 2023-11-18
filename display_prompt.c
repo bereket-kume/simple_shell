@@ -1,4 +1,3 @@
-history.c
 #include "main.h"
 
 char *get_history_file(info_t *info)
