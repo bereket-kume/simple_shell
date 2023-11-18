@@ -35,6 +35,7 @@ void prompt(void);
 char *read_input();
 void printenv(char **environ);
 char *my_strtok(char *str, const char *delimiters);
-
-
+int set_env_var(const char *variable, const char *value, char ***env);
+void shell_setenv(char **args, char ***env);
+int unset_env_var(const char *variable, char ***env);
 #endif
