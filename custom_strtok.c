@@ -96,7 +96,6 @@ int _myhelp(info_t *info)
 	return (0);
 }
 
-#include "shell.h"
 
 /**
  * _myhistory - displays the history list, one command by line, preceded
