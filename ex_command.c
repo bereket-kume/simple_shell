@@ -9,37 +9,36 @@
  *Return: -1 or 0
  */
 
-int execute_cmd(char **adv, char **value, char **env, int num, int lk) 
+int execute_cmd(char **adv, char **value, char **env, int num, int lk)
 {
-    pid_t pid;
-    int status;
+	pid_t pid;
+	int status;
 
-    if (value == NULL)
-        return (-1);
+	if (value == NULL)
+		return (-1);
+	pid = fork();
+	if (pid  < 0)
+	{
+		perror("./hsh: ");
+		exit(1);
+	}
+	else if (pid == 0)
+	{
+		if (execve(value[0], value, env) == -1)
+		{
+			_error(adv[0], lk, value[0]);
+			free(value);
+			exit(1);
+		}
+		exit(0);
+	}
+	else
+	{
+		if (num == 1)
+			free(value[0]);
 
-    if (num == 1) {
-        if (access(value[0], X_OK) == 0) 
-	{ 
-            pid = fork();
-            if (pid < 0) {
-                perror("./hsh: ");
-                exit(1);
-            } else if (pid == 0) {
-                if (execve(value[0], value, env) == -1) {
-                    perror("Execution error");
-                    free(value);
-                    exit(1);
-                }
-                exit(0);
-            } else {
-                free(value);
-                waitpid(pid, &status, WUNTRACED);
-            }
-        } else {
-            printf("Command '%s' not found\n", value[0]);
-            free(value);
-        }
-    }
-
-    return 1;
+		free(value);
+		waitpid(pid, &status, WUNTRACED);
+	}
+	return (1);
 }
