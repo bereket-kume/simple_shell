@@ -9,7 +9,7 @@
  *Return: -1 or 0
  */
 
-int execute_cmd(char **adv, char **value, char **env, int num, int lk) 
+int execute_cmd(char **value, char **env, int num) 
 {
     pid_t pid;
     int status;
