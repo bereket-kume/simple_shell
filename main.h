@@ -34,7 +34,7 @@ char **split_str(char *line, char **env);
 void prompt(void);
 char *read_input();
 void printenv(char **environ);
-
+char *my_strtok(char *str, const char *delimiters);
 
 
 #endif

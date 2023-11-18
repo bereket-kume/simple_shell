@@ -29,12 +29,12 @@ char **split_str(char *sarara, char **env)
 		prints("error");
 		exit(EXIT_FAILURE);
 	}
-	tokenized_j = strtok(sarara, sepval);
+	tokenized_j = my_strtok(sarara, sepval);
 	while (tokenized_j != NULL)
 	{
 		guyya[lk] = tokenized_j;
 		lk++;
-		tokenized_j = strtok(NULL, sepval);
+		tokenized_j = my_strtok(NULL, sepval);
 	}
 	if (guyya[0] == NULL)
 		guyya[lk] = "\n";

@@ -1,3 +1,5 @@
+#include "main.h"
+
 char *my_strtok(char *str, const char *delimiters) {
     static char *lastToken = NULL;
     char *tokenStart;
