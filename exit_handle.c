@@ -1,15 +1,5 @@
 
 #include "main.h"
-<<<<<<< HEAD
-
-
-/**
- **_strncpy - copies a string
- *@dest: the destination string to be copied to
- *@src: the source string
- *@n: the amount of characters to be copied
- *Return: the concatenated string
- */
 char *_strncpy(char *dest, char *src, int n)
 {
 	int i, j;
@@ -76,6 +66,7 @@ char *_strchr(char *s, char c)
 	return (NULL);
 }
 
+#include "main.h.h"
 
 /**
  * get_environ - returns the string array copy of our environ
@@ -166,67 +157,5 @@ int _setenv(info_t *info, char *var, char *value)
 	add_node_end(&(info->env), buf, 0);
 	free(buf);
 	info->env_changed = 1;
-=======
-int is_cmd(info_t *info, char *path)
-{
-	struct stat st;
-
-	(void)info;
-	if (!path || stat(path, &st))
-		return (0);
-
-	if (st.st_mode & S_IFREG)
-	{
-		return (1);
-	}
->>>>>>> 2105dd56bfa6b5ae04ec07b8df43c9e8dffbe7c4
 	return (0);
-}
-
-
-char *dup_chars(char *pathstr, int start, int stop)
-{
-	static char buf[1024];
-	int i = 0, k = 0;
-
-	for (k = 0, i = start; i < stop; i++)
-		if (pathstr[i] != ':')
-			buf[k++] = pathstr[i];
-	buf[k] = 0;
-	return (buf);
-}
-
-char *find_path(info_t *info, char *pathstr, char *cmd)
-{
-	int i = 0, curr_pos = 0;
-	char *path;
-
-	if (!pathstr)
-		return (NULL);
-	if ((_strlen(cmd) > 2) && starts_with(cmd, "./"))
-	{
-		if (is_cmd(info, cmd))
-			return (cmd);
-	}
-	while (1)
-	{
-		if (!pathstr[i] || pathstr[i] == ':')
-		{
-			path = dup_chars(pathstr, curr_pos, i);
-			if (!*path)
-				_strcat(path, cmd);
-			else
-			{
-				_strcat(path, "/");
-				_strcat(path, cmd);
-			}
-			if (is_cmd(info, path))
-				return (path);
-			if (!pathstr[i])
-				break;
-			curr_pos = i;
-		}
-		i++;
-	}
-	return (NULL);
 }
