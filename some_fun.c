@@ -128,10 +128,4 @@ char *str_concat(char *D1, char *D2)
 	return (ch);
 
 }
-void printenv(char **nano)
-{
-	int s = 0;
 
-	for (; nano[s] ; s++)
-		_puts(nano[s]);
-}
