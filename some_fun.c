@@ -57,7 +57,12 @@ char **search(char **nano)
 	}
 	return (sarara);
 }
-
+/**
+ *_itoa is function that do some work
+ *@lak: first parameter
+ *@hun: is first parameter
+ *Reurn: nothing
+ */
 char *_itoa(int lak, int hun)
 {
 	static char *kal = "0123456789abcdef";
@@ -84,6 +89,12 @@ char *_itoa(int lak, int hun)
 
 	return (kr);
 }
+/**
+ *str_concat - isfunction that do something
+ *@D!: is our first parmater
+ @D@: is our second argument
+ *Return: nothing
+ */
 char *str_concat(char *D1, char *D2)
 {
 	char *ch;

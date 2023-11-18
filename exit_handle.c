@@ -12,7 +12,13 @@ void handle_signal(int srs)
 	fflush(stdout);
 }
 
-
+/**
+ *_error - is function function that find error
+ *@argv: is our first parameter
+ *@value: is our second parameter
+ *@args: is our third parameter
+ *Return: nothing
+ */
 int *_error(char *argv, int value, char *args)
 {
 	char *digit;
@@ -29,7 +35,12 @@ int *_error(char *argv, int value, char *args)
 	return (0);
 }
 
-
+/**
+ *_stat - the function that contril command line
+ *@command_line: si first paramter
+ *@control: is second parameter
+ *Return: nothing
+ */
 int _stat(char **command_line, char **control)
 {
 	char *fullstr = NULL, *fullconcat = NULL;
@@ -44,7 +55,7 @@ int _stat(char **command_line, char **control)
 	}
 	for (lk = 0; control[lk] != NULL ; lk++)
 	{
-		fullstr= str_concat(control[lk], "/");
+		fullstr = str_concat(control[lk], "/");
 		fullconcat = str_concat(fullstr, command_line[0]);
 
 		if (stat(fullconcat, &sb) == 0 && (sb.st_mode & S_IXUSR))

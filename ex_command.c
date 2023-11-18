@@ -6,7 +6,7 @@
  *@env: is our input
  *@num: is our input parameter
  *@lk: is our input parameter
- *@Return: -1 or 0
+ *Return: -1 or 0
  */
 
 int execute_cmd(char **adv, char **value, char **env, int num, int lk)
